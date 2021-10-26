@@ -13,8 +13,8 @@ router.post("/", async (req, res) => {
 
         await sendEmail({
             to: user.email,
-            subject: "Verification Email",
-            text: "Email VErification",
+            subject: `Welcome to Email Verification system ${user.first_name} ${user.last_name}`,
+            text: `Hi ${user.first_name}, Please confirm your email address`,
             html: "<b>Email VErification</b>",
         });
 
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
     try {
         const page = +req.query.page || 1;
-        const size = +req.query.size || 10;
+        const size = +req.query.size || 3;
         const offset = (page - 1) * size;
 
         // Getting the users
